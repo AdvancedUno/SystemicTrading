@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: quant-postgres
+    environment:
+      POSTGRES_USER: quant
+      POSTGRES_PASSWORD: quant
+      POSTGRES_DB: quant
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quant"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.16.0
+    container_name: quant-mlflow
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri postgresql://quant:quant@postgres:5432/quant
+      --default-artifact-root /mlflow/artifacts
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-artifacts:/mlflow/artifacts
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: quant-app
+    env_file:
+      - ../.env
+    environment:
+      DATABASE_URL: postgresql://quant:quant@postgres:5432/quant
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    volumes:
+      - ../src:/app/src
+      - ../scripts:/app/scripts
+      - ../config:/app/config
+      - ../data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mlflow:
+        condition: service_started
+    command: tail -f /dev/null  # keep container running for exec
+
+volumes:
+  pg-data:
+  mlflow-artifacts:

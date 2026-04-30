@@ -1,0 +1,76 @@
+# Phase 1 starter universe.
+# Small (50 names) so we iterate fast; liquid so execution is realistic.
+
+equities:
+  # Mega-cap tech
+  - AAPL
+  - MSFT
+  - GOOGL
+  - AMZN
+  - META
+  - NVDA
+  - TSLA
+  # Other large-cap tech
+  - AVGO
+  - CRM
+  - AMD
+  - NFLX
+  - ORCL
+  - ADBE
+  # Financials
+  - JPM
+  - BAC
+  - WFC
+  - GS
+  - MS
+  - V
+  - MA
+  - BRK.B
+  # Healthcare
+  - UNH
+  - JNJ
+  - LLY
+  - PFE
+  - ABBV
+  - MRK
+  # Consumer
+  - WMT
+  - HD
+  - PG
+  - KO
+  - PEP
+  - COST
+  - MCD
+  - NKE
+  # Industrials
+  - CAT
+  - BA
+  - GE
+  - HON
+  - UPS
+  # Energy
+  - XOM
+  - CVX
+  - COP
+  # Communication
+  - DIS
+  - VZ
+  - T
+  # Index proxies (useful as factors / hedges)
+  - SPY
+  - QQQ
+  - IWM
+  - DIA
+  - VTI
+
+crypto:
+  - BTC-USD
+  - ETH-USD
+  - SOL-USD
+  - BNB-USD
+  - XRP-USD
+  - ADA-USD
+  - AVAX-USD
+  - DOT-USD
+  - MATIC-USD
+  - LINK-USD
