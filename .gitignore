@@ -27,6 +27,7 @@ data/features/
 # Secrets
 .env
 .env.local
+.env.example
 *.key
 credentials/
 
