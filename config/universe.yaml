@@ -1,5 +1,5 @@
-# Phase 1 starter universe.
-# Small (50 names) so we iterate fast; liquid so execution is realistic.
+# Phase 1 universe — what's actually available on Alpaca free tier.
+# Comments note caveats about historical depth.
 
 equities:
   # Mega-cap tech
@@ -25,6 +25,7 @@ equities:
   - MS
   - V
   - MA
+  # NOTE: BRK.B may fail on Alpaca free tier. Remove if it does.
   - BRK.B
   # Healthcare
   - UNH
@@ -56,7 +57,7 @@ equities:
   - DIS
   - VZ
   - T
-  # Index proxies (useful as factors / hedges)
+  # Index proxies (factor / hedge)
   - SPY
   - QQQ
   - IWM
@@ -64,13 +65,14 @@ equities:
   - VTI
 
 crypto:
+  # Available on Alpaca, ordered roughly by liquidity
   - BTC-USD
   - ETH-USD
   - SOL-USD
-  - BNB-USD
   - XRP-USD
-  - ADA-USD
+  - ADA-USD       # only ~3mo of history on Alpaca as of 2026
   - AVAX-USD
   - DOT-USD
-  - MATIC-USD
   - LINK-USD
+  - MATIC-USD     # Polygon — may be retired in favor of POL-USD
+  # BNB-USD removed: not available on US exchanges
